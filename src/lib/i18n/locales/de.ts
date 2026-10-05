@@ -2,6 +2,16 @@ import type { TranslationDict } from '../types'
 
 // German translations
 export const de: TranslationDict = {
+  checkinPathChange: {
+    title: 'Dateipfad geändert',
+    messageOne:
+      'Diese Datei wurde lokal umbenannt oder verschoben. Serverpfad aktualisieren?',
+    messageMany:
+      '{{count}} Dateien wurden lokal umbenannt oder verschoben. Serverpfade aktualisieren?',
+    confirmText: 'Pfade aktualisieren und einchecken',
+    old: 'Alt',
+    new: 'Neu',
+  },
   checkoutDisplay: {
     you: 'Du',
     loadingOwner: 'Checkout-Besitzer wird geladen',

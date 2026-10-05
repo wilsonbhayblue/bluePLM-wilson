@@ -28,6 +28,16 @@ export const en: TranslationDict = {
     solidWorksStillReadonly:
       'Checked out and writable on disk, but SolidWorks still has the file open as read-only. In SolidWorks, use Edit → Read-Only Mode, or close and reopen the file.',
   },
+  // Check-in path-change confirmation: shown before a local rename/move is written to the server.
+  // old/new are the row labels in the full-path, scrollable list.
+  checkinPathChange: {
+    title: 'File Path Changed',
+    messageOne: 'This file was renamed or moved locally. Update the server path?',
+    messageMany: '{{count}} files were renamed or moved locally. Update the server paths?',
+    confirmText: 'Update Paths & Check In',
+    old: 'Old',
+    new: 'New',
+  },
   // Item Browser expandable sections
   itemBrowser: {
     designation: 'Designation',

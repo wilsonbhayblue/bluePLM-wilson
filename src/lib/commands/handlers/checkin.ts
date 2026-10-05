@@ -794,15 +794,18 @@ export const checkinCommand: Command<CheckinParams> = {
     })
 
     if (filesWithPathChanges.length > 0 && ctx.confirm) {
-      const items = filesWithPathChanges.map((f) => `${f.pdmData?.file_name || '?'} → ${f.name}`)
+      const pathChanges = filesWithPathChanges.map((f) => ({
+        from: f.pdmData?.file_path || f.pdmData?.file_name || '?',
+        to: f.relativePath,
+      }))
       const confirmed = await ctx.confirm({
-        title: 'File Path Changed',
+        title: t('checkinPathChange.title'),
         message:
           filesWithPathChanges.length === 1
-            ? 'This file was renamed or moved locally. Update the server path?'
-            : `${filesWithPathChanges.length} files were renamed or moved locally. Update the server paths?`,
-        items,
-        confirmText: 'Update Paths & Check In',
+            ? t('checkinPathChange.messageOne')
+            : t('checkinPathChange.messageMany', { count: filesWithPathChanges.length }),
+        pathChanges,
+        confirmText: t('checkinPathChange.confirmText'),
       })
 
       if (!confirmed) {
