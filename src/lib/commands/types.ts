@@ -48,6 +48,9 @@ export interface CommandContext {
     title: string
     message: string
     items?: string[] // file names to list in a scrollable container
+    // Before/after path pairs, rendered full-width and scrollable so the whole path is visible.
+    // Use instead of `items` when the user needs to see where a file moved from and to.
+    pathChanges?: Array<{ from: string; to: string }>
     confirmText?: string // default "Continue"
   }) => Promise<boolean>
 

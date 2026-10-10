@@ -2,6 +2,14 @@ import type { TranslationDict } from '../types'
 
 // Simplified Chinese translations (简体中文)
 export const zhCN: TranslationDict = {
+  checkinPathChange: {
+    title: '文件路径已更改',
+    messageOne: '此文件已在本地重命名或移动。是否更新服务器上的路径？',
+    messageMany: '{{count}} 个文件已在本地重命名或移动。是否更新服务器上的路径？',
+    confirmText: '更新路径并签入',
+    old: '旧',
+    new: '新',
+  },
   checkoutDisplay: {
     you: '你',
     loadingOwner: '正在加载签出者',

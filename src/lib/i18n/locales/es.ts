@@ -2,6 +2,15 @@ import type { TranslationDict } from '../types'
 
 // Spanish translations
 export const es: TranslationDict = {
+  checkinPathChange: {
+    title: 'Ruta de archivo cambiada',
+    messageOne: 'Este archivo se renombró o se movió localmente. ¿Actualizar la ruta del servidor?',
+    messageMany:
+      '{{count}} archivos se renombraron o se movieron localmente. ¿Actualizar las rutas del servidor?',
+    confirmText: 'Actualizar rutas y registrar',
+    old: 'Antigua',
+    new: 'Nueva',
+  },
   checkoutDisplay: {
     you: 'Tú',
     loadingOwner: 'Cargando propietario del checkout',

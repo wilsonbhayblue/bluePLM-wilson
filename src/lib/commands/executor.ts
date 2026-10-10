@@ -50,6 +50,7 @@ export function showCommandConfirm(opts: {
   title: string
   message: string
   items?: string[]
+  pathChanges?: Array<{ from: string; to: string }>
   confirmText?: string
 }): Promise<boolean> {
   return new Promise<boolean>((resolve) => {
@@ -59,6 +60,7 @@ export function showCommandConfirm(opts: {
       title: opts.title,
       message: opts.message,
       items: opts.items,
+      pathChanges: opts.pathChanges,
       confirmText: opts.confirmText,
     })
   })

@@ -600,6 +600,9 @@ export interface UISlice {
     title: string
     message: string
     items?: string[]
+    // Before/after path pairs rendered full-width and scrollable so the whole path is legible
+    // (e.g. a rename/move confirmation). Takes precedence over `items` when present.
+    pathChanges?: Array<{ from: string; to: string }>
     confirmText?: string
   } | null
 

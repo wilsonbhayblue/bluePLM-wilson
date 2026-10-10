@@ -2,6 +2,14 @@ import type { TranslationDict } from '../types'
 
 // Traditional Chinese translations (繁體中文)
 export const zhTW: TranslationDict = {
+  checkinPathChange: {
+    title: '檔案路徑已變更',
+    messageOne: '此檔案已在本機重新命名或移動。是否更新伺服器上的路徑？',
+    messageMany: '{{count}} 個檔案已在本機重新命名或移動。是否更新伺服器上的路徑？',
+    confirmText: '更新路徑並簽入',
+    old: '舊',
+    new: '新',
+  },
   checkoutDisplay: {
     you: '你',
     loadingOwner: '正在載入簽出者',

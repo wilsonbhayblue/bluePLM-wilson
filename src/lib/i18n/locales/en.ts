@@ -30,6 +30,16 @@ export const en: TranslationDict = {
     syncBlocked:
       'Read-only on disk, so no metadata was written to: {{names}}. Check the file out again to make it writable.',
   },
+  // Check-in path-change confirmation: shown before a local rename/move is written to the server.
+  // old/new are the row labels in the full-path, scrollable list.
+  checkinPathChange: {
+    title: 'File Path Changed',
+    messageOne: 'This file was renamed or moved locally. Update the server path?',
+    messageMany: '{{count}} files were renamed or moved locally. Update the server paths?',
+    confirmText: 'Update Paths & Check In',
+    old: 'Old',
+    new: 'New',
+  },
   // Item Browser expandable sections
   itemBrowser: {
     designation: 'Designation',

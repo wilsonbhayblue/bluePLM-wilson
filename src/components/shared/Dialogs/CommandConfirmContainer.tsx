@@ -10,10 +10,12 @@ import { memo, useEffect, useCallback } from 'react'
 import { AlertTriangle, File } from 'lucide-react'
 import { usePDMStore } from '@/stores/pdmStore'
 import { resolveCommandConfirm } from '@/lib/commands/executor'
+import { useTranslation } from '@/lib/i18n'
 
 const MAX_VISIBLE_FILES = 5
 
 export const CommandConfirmContainer = memo(function CommandConfirmContainer() {
+  const { t } = useTranslation()
   const pendingConfirm = usePDMStore((s) => s.pendingCommandConfirm)
 
   const handleConfirm = useCallback(() => {
@@ -44,7 +46,8 @@ export const CommandConfirmContainer = memo(function CommandConfirmContainer() {
 
   if (!pendingConfirm) return null
 
-  const { title, message, items, confirmText = 'Continue' } = pendingConfirm
+  const { title, message, items, pathChanges, confirmText = 'Continue' } = pendingConfirm
+  const hasPathChanges = !!pathChanges && pathChanges.length > 0
 
   return (
     // z-[500]: this is the final, blocking gate in front of a write (`ctx.confirm()` in
@@ -61,7 +64,9 @@ export const CommandConfirmContainer = memo(function CommandConfirmContainer() {
       onClick={handleCancel}
     >
       <div
-        className="bg-plm-bg-light border border-plm-border rounded-lg p-6 max-w-md shadow-2xl"
+        className={`bg-plm-bg-light border border-plm-border rounded-lg p-6 shadow-2xl ${
+          hasPathChanges ? 'max-w-xl w-full' : 'max-w-md'
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-3 mb-4">
@@ -75,7 +80,33 @@ export const CommandConfirmContainer = memo(function CommandConfirmContainer() {
 
         <p className="text-sm text-plm-fg-dim mb-4">{message}</p>
 
-        {items && items.length > 0 && (
+        {hasPathChanges && (
+          // Full-width, wrapping (`break-all`), and vertically scrollable so even a deep vault
+          // path is fully legible instead of truncated to its filename.
+          <div className="bg-plm-bg rounded border border-plm-border mb-4 max-h-60 overflow-y-auto">
+            {pathChanges!.map((change, i) => (
+              <div
+                key={i}
+                className="p-3 border-b border-plm-border last:border-b-0 space-y-1.5"
+              >
+                <div className="flex items-start gap-2">
+                  <span className="text-xs font-medium text-plm-fg-muted w-8 flex-shrink-0 pt-0.5">
+                    {t('checkinPathChange.old')}
+                  </span>
+                  <span className="text-sm font-mono text-plm-fg-dim break-all">{change.from}</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-xs font-medium text-plm-fg-muted w-8 flex-shrink-0 pt-0.5">
+                    {t('checkinPathChange.new')}
+                  </span>
+                  <span className="text-sm font-mono text-plm-fg break-all">{change.to}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {!hasPathChanges && items && items.length > 0 && (
           <div className="bg-plm-bg rounded border border-plm-border p-3 mb-4 max-h-40 overflow-y-auto">
             {items.length === 1 ? (
               <div className="flex items-center gap-2">

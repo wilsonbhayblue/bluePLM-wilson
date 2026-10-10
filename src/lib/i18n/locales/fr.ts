@@ -2,6 +2,16 @@ import type { TranslationDict } from '../types'
 
 // French translations
 export const fr: TranslationDict = {
+  checkinPathChange: {
+    title: 'Chemin du fichier modifié',
+    messageOne:
+      'Ce fichier a été renommé ou déplacé localement. Mettre à jour le chemin sur le serveur ?',
+    messageMany:
+      '{{count}} fichiers ont été renommés ou déplacés localement. Mettre à jour les chemins sur le serveur ?',
+    confirmText: 'Mettre à jour les chemins et archiver',
+    old: 'Ancien',
+    new: 'Nouveau',
+  },
   checkoutDisplay: {
     you: 'Vous',
     loadingOwner: 'Chargement du propriétaire du checkout',
